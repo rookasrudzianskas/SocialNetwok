@@ -1,0 +1,26 @@
+
+<div class="col-12 col-md-6 myb-3 mx-auto">
+
+
+ <div class="card {% if not blog_post.published_date %} border border-warning {% endif %}">
+     <div class="card-body">
+     {% if blog_post.image %}
+         <img src="{{ blog_post.image.url }}" class="card-img-top" alt="">
+     {% endif %}
+         <h5 class="card-title">{{ blog_post.title }}</h5>
+         <p class="card-text">
+         <small class="text-muted">{{ blog_post.published_date }}</small>
+              {% if truncate %}
+             {{ blog_post.content|linebreaks|truncatewords:30 }}
+            {% else %}
+                   {{ blog_post.content|linebreaks}}
+             {% endif %}
+         </p>
+
+     {% if not detail %}
+         {% if not blog_post.published_date %} Draft {% endif %}
+         <a href="{{ blog_post.get_absolute_url }}">View</a>
+     {% endif %}
+     </div>
+ </div>
+    </div>
